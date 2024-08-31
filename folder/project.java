@@ -1,12 +1,6 @@
 package jsp;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import http.*;
 import sql.*;
 import org.jsoup.Jsoup;
@@ -124,7 +118,7 @@ private String endHtml (String a, String b) {
 
 public String getHtml(Socket sock, Session ses, String host, String[] params) throws IOException{
 
-		
+		String pm="";	
 		Create_db db = new Create_db();
 		Socket s = ses.pget("py"); // 파이썬 클라이언트 소켓	
 		OutputStream pos = s.getOutputStream();
@@ -223,19 +217,21 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 					
 					
 					BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream(), "UTF-8"));
-					InputStream in = s.getInputStream();
 					
 					sendDataI(pos, sLl);
 					
-					String pm = null;
+					
 					
 					for(int i=0;i<sendList.length; i++) {
 						
 						System.out.println(i);
-		
-						if(i == 0 || pm == null) {
+						System.out.println(pm);
+						if(i == 0) {
 							sendData(pos, sendList[i]);
 							pm = br.readLine();
+							if(pm == null) {
+								pm = br.readLine();
+							}
 						}
 						
 						else if(i > 0 && pm.equals("more")) {
@@ -243,9 +239,10 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 							pm = br.readLine();
 						}			
 					}
+					
+					System.out.println("----------------------");
 	
 					String pymsg = br.readLine();  
-					summer = pymsg;
 					
 					db.Wgptinsert(word, pymsg);
 					
@@ -381,15 +378,17 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 				String sLl = String.valueOf(sendList.length);
 				sendDataI(pos, sLl);
 				
-				String pm = null;
 				
 				for(int i=0;i<sendList.length; i++) {
 					
 					System.out.println(i);
 	
-					if(i == 0 || pm == null) {
+					if(i == 0) {
 						sendData(pos, sendList[i]);
 						pm = br.readLine();
+						if(pm == null) {
+							pm = br.readLine();
+						}
 					}
 					
 					else if(i > 0 && pm.equals("more")) {
