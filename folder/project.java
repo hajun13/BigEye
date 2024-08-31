@@ -126,6 +126,8 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 		
 		urll = getParamValue(params, "url"); // 사용자가 입력한 url 추출
 		System.out.println("original url : " + urll);
+	
+		// 키워드로 검색하면 true
 		if(urll == null) {
 			try {
 				System.out.println("-- 키워드 입력 --");
