@@ -1,5 +1,7 @@
 package jsp;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +25,7 @@ private String rev;	//최종메시지
 
 
 private String word;
-private int progress = 0;
-String pm = "";
+
 String summer = "";
 String urll;
 
@@ -71,6 +72,7 @@ private String makeHtml(String url, String a, String b) {
 			+ "<main>"
 			+ "<br>"
 			+ "<big><strong>요약: </big></strong><br><br>"
+			+ "<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>"
 			+ a
 			+ "</main>"
 			+ "<br><hr>"
@@ -89,6 +91,8 @@ private String startHtml() {
 	
 	return result;
 }
+// startHtml <p style ~ url 담는부분 전까지 만들어놓음 -> url을 차례대로 1, 2, 3 추가함. 그리고 요약내용은 어떻게 할지 생각해보기
+
 
 private String addUrl(String url) {
 	String result="";
@@ -103,6 +107,7 @@ private String endHtml (String a, String b) {
 			+ "</header>"
 			+ "<main>"
 			+ "<br>"
+			+ "<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>"
 			+ "<big><strong>요약: </big></strong><br><br>"
 			+ a
 			+ "</main>"
@@ -126,8 +131,6 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 		
 		urll = getParamValue(params, "url"); // 사용자가 입력한 url 추출
 		System.out.println("original url : " + urll);
-	
-		// 키워드로 검색하면 true
 		if(urll == null) {
 			try {
 				System.out.println("-- 키워드 입력 --");
@@ -156,6 +159,7 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 				}
 				
 				else if(!db.isWord(word)) {
+					System.out.println("-- 새로 입력한 키워드 -- ");
 					String encodedWord = URLEncoder.encode(word, "UTF-8");
 					
 					String googleSearchURL = "https://www.google.com/search?q=" + encodedWord;
@@ -166,15 +170,13 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 					
 					Elements links = doc.select("a[jsname=UWckNb]");
 	
-	//				String[] topUrls = new String[3];
 					ArrayList<String> topUrls = new ArrayList<>();
 	
 					for (Element link : links) {
 						String url = link.attr("href");
 						System.out.println("orijinal url : " + url);
 					    if (url.startsWith("http://") || url.startsWith("https://")) {
-	//				    	String actualUrl = url.split("&")[0].substring(7);
-	//				    	actualUrl = actualUrl.replace("%3F", "?").replace("%26", "&");
+
 					    	topUrls.add(url);
 					    }
 					    if (topUrls.size() >= 3) break;
@@ -225,6 +227,8 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 					
 					sendDataI(pos, sLl);
 					
+					String pm = null;
+					
 					for(int i=0;i<sendList.length; i++) {
 						
 						System.out.println(i);
@@ -263,8 +267,24 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 		                    db.wordinsert(word, kword, Sscore);
 		                }
 		            }
+		            String[] pns = pymsg.split("<span>");
+		            String ps = pns[1];
+		            String regexx = "\\d+%";
+		            		          
+		            Pattern pattern = Pattern.compile(regexx);
+		            Matcher matcher = pattern.matcher(ps);
 		            
+		            List<String> percentages = new ArrayList<>();
 		            
+		            // 매칭되는 모든 부분을 찾아 리스트에 추가
+		            while (matcher.find()) {
+		                percentages.add(matcher.group());
+		            }
+		            
+		            String as1 = percentages.get(0);
+		            String as2 = percentages.get(1);
+		            
+		            System.out.println(as1 + as2);
 		            String wordAll = db.wordselURL(word);
 		            String wgptAll = db.wgptselURL(word);
 		            
@@ -279,7 +299,7 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 		}
 		
 		else if(urll != null) {
-			
+			System.out.println("-- url 입력 --");
 	 		urll = URLDecoder.decode(urll, "UTF-8");
 			
 			
@@ -361,7 +381,7 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 				String sLl = String.valueOf(sendList.length);
 				sendDataI(pos, sLl);
 				
-				
+				String pm = null;
 				
 				for(int i=0;i<sendList.length; i++) {
 					
@@ -406,8 +426,6 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 	                    db.keyinsert(urll, word, Sscore);
 	                }
 	            }
-					
-	            System.out.println("\tinsert 완료\t");
 				//body
 				String keyAll = db.keyselURL(urll); //keyAll 키워드 : 빈도수 저장
 				String gptAll = db.gptselURL(urll);
@@ -418,6 +436,7 @@ public String getHtml(Socket sock, Session ses, String host, String[] params) th
 	        }
 		}
 		
+		System.out.println("--완료--");
 		return "<html><meta charset='utf-8'>" + rev + "</html>";
 	}
 }
