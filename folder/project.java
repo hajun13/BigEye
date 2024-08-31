@@ -89,8 +89,6 @@ private String startHtml() {
 	
 	return result;
 }
-// startHtml <p style ~ url 담는부분 전까지 만들어놓음 -> url을 차례대로 1, 2, 3 추가함. 그리고 요약내용은 어떻게 할지 생각해보기
-
 
 private String addUrl(String url) {
 	String result="";
