@@ -1,0 +1,97 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif
+}
+
+body{
+    background: url(./image/12.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    user-select: none;
+}
+
+
+.wrapper{
+    position: relative;
+    width: 450px;
+    height: 650px;
+    backdrop-filter: blur(15px);
+    border: 1px solid white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+ .wrapper h2{
+    font-size: 36px;
+    color: white;
+    margin: 40px;
+}
+
+.name input,
+.register input,
+.email input,
+.password input,
+.cfpassword input{
+    width: 70%;
+    height: 50px;
+    margin: 10px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 30px;
+    background: transparent;
+    color: white;
+    font-size: 15px;
+    padding-right: 50px;
+    
+}
+
+/* .fa-lock .usericon,
+.password .lockicon{
+    position: relative;
+    color: white;
+    right: 45px; 
+} */
+
+
+::placeholder{
+    color:white;
+    position: relative;
+    left: 10px;
+}
+
+.check span{
+    color : white;
+    margin: 20px;
+}
+
+.check input{
+    position: relative;
+    
+}
+
+.signbtn button{
+    width: 70%;
+    height: 50px;
+    border: 1px solid white;
+    background: white;
+    border-radius: 30px;
+    margin: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.login span,
+.login a{
+    color: white;  
+    margin: 5px;
+
+} 
