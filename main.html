@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="main.css">
+    <!-- Font Awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="header-button" onclick="window.open('login.html', '_blank')">로그인</button>
+            <button class="header-button" onclick="window.open('signup.html', '_blank')">회원가입</button>
+        </div>
+        <div class="logo">My Logo</div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="키워드를 입력하세요." id="searchInput">
+            <button class="search-button" onclick="search()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
