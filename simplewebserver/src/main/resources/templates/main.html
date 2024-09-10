@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <!-- Font Awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="header-button" onclick="window.open('login.html', '_blank')">로그인</button>
+            <button class="header-button" onclick="window.open('registration.html', '_blank')">회원가입</button>
+        </div>
+        <div class="logo">test2</div>
+        <div class="search-container">
+        <form class="search-form" id="searchForm" action="/api/submit" method="post" on>						
+            <input type="text" class="search-input" name="keyword" placeholder="키워드를 입력하세요." id="searchInput">
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        </div>
+    </div>
+    
+    <script th:src="@{/js/main.js}"></script>
+    
+</body>
+</html>

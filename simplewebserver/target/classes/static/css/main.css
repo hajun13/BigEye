@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f2f2f2;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; /* 중앙 정렬을 위한 마진 자동 설정 */
+}
+
+.search-input {
+    width: calc(100% - 60px);
+    padding: 15px;
+    padding-right: 60px; /* 버튼 공간을 고려한 여백 */
+    border: 1px solid #ccc;
+    border-radius: 24px;
+    box-sizing: border-box;
+    font-size: 1em; /* 폰트 크기 조정 */
+}
+
+.search-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%) translateX(-90%);
+    background: none;
+    border: none; 
+    color: #007bff; /* 아이콘 색상 설정 */
+    font-size: 1.2em; /* 아이콘 크기 설정 */
+    cursor: pointer;
+}
+
+
+.search-button i {
+    margin: 0; /* 아이콘 주위의 여백 제거 */
+}
+
+.search-button:hover i {
+    color: #0056b3; 
+}
+
+.header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.header-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.header-button:hover {
+    background-color: #0056b3;
+}
+
+/* 모바일 화면을 위한 스타일 */
+@media (max-width: 600px) {
+    .header {
+        top: 5px;
+        right: 5px;
+    }
+
+    .header-button {
+        padding: 4px 8px;
+        font-size: 12px;
+        margin: 1px;
+    }
+
+    .logo {
+        font-size: 1.5em; /* 모바일 화면에 맞게 폰트 크기 조정 */
+        margin-bottom: 15px;
+    }
+
+    .search-container {
+        max-width: 100%; /* 모바일 화면에서 전체 너비를 사용하도록 설정 */
+        padding: 0; /* 모바일 화면에서는 추가적인 패딩 제거 */
+    }
+
+    .search-input {
+        font-size: 14px;
+        padding-right: 45px; /* 검색 버튼 크기에 맞게 오른쪽 여백 조정 */
+    }
+
+    .search-button {
+        right: 5px;
+        padding: 8px;
+        font-size: 14px;
+    }
+}

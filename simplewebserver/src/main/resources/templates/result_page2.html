@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과</title>
+    <link rel="stylesheet" href="result_page2.css">
+</head>
+<body>
+    <header>
+        <a><img src=""></a>
+        <h2>BIG-EYE</h2> <!--이미지파일 추가, 메인페이지로 링크-->
+    </header>
+
+    <main>
+        <section id="search-section">          
+            <form class="search-form" action="" method="post">
+                <input class="search-bar" type="text">
+                <button class="search-button" type="submit" onclick="generateWordCloud()">
+                    <img src="/BIG_EYE/searchBar.png" alt="검색창" width="30px" height="30px">
+                </button>
+            </form>   
+        </section>
+
+        <section id="wordCloud-section">
+            <h4>KEYWORD</h4>
+            <div id="wordCloudContainer">
+                <canvas id="wordCloudCanvas"></canvas>
+            </div>
+        </section> 
+
+        <section id="setimentChart-section">
+            <h4>SENTIMENT-GRAPH</h4>
+            <canvas id="sentimentChart"></canvas>
+        </section>
+        
+        <section id="summary-section">
+            <h4>SUMMARY</h4>
+            <div id="summary"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Big-eye Keyword Extractor. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/wordcloud2.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="resultScript.js"></script>
+    
+
+</body>
+</html>

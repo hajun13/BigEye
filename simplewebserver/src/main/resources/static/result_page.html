@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과</title>
+
+    <!-- CSS 파일을 절대 경로로 수정 -->
+    <link rel="stylesheet" href="/css/result_page1.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.2.2/wordcloud2.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/resultScript.js"></script
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    
+    <header>
+        <a><img src=""></a>
+        <h2>BIG-EYE</h2>
+       
+    </header>
+
+    <main>
+        <section id="search-section">
+            <form id="search-form" class="search-form" action="/api/submit" method="post">
+                <input id="search-bar" class="search-bar" name="keyword" type="text">
+                <button class="search-button" type="submit">
+                    <img src="/BIG_EYE/searchBar.png" alt="검색창" width="30px" height="30px">
+                </button>
+            </form>
+        </section>
+
+        <!-- 추가 섹션들 -->
+        <section id="wordcloud-section">
+            <h4>KEYWORD</h4>
+            <div id="wordcloudContainer"></div>
+            <canvas id="wordcloudCanvas"></canvas>
+        </section>
+
+        <section id="sentimentChart-section">
+            <h4>SENTIMENT-GRAPH</h4>
+            <div class="chart-container">
+            <canvas id="sentimentChart"></canvas>
+        </section>
+
+        <section id="summary-section">
+            <h4>SUMMARY</h4>
+            <div id="summary"></div>function showLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.remove('hidden');
+}
+
+// 데이터 로딩이 완료되면 로딩 애니메이션 숨기기
+function hideLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.add('hidden');
+}function showLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.remove('hidden');
+}
+
+// 데이터 로딩이 완료되면 로딩 애니메이션 숨기기
+function hideLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.add('hidden');
+}function showLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.remove('hidden');
+}
+
+// 데이터 로딩이 완료되면 로딩 애니메이션 숨기기
+function hideLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.add('hidden');
+}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Big-eye Keyword Extractor. All rights reserved.</p>
+    </footer>
+    
+
+</body>
+</html>
