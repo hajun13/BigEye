@@ -9,7 +9,6 @@ import os
 import openai
 from sklearn.feature_extraction.text import TfidfVectorizer
 from konlpy.tag import Okt
-import threading
 
 
 
