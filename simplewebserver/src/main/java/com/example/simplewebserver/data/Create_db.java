@@ -18,7 +18,7 @@ public class Create_db {
     private Connection connect() { //내부함수
         String url = "jdbc:mysql://localhost:3306/sum";
         String user = "root";
-        String password = "0815";
+        String password = "****";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
